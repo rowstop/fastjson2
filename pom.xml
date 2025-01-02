@@ -32,7 +32,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <fastjson1x.version>1.2.83</fastjson1x.version>
-        <jackson.version>2.17.2</jackson.version>
+        <jackson.version>2.18.0</jackson.version>
         <jetty.version>11.0.15</jetty.version>
         <jersey.version>2.44</jersey.version>
         <solon.version>3.0.1</solon.version>
@@ -78,6 +78,7 @@
             <module>example-spring6-test</module>
         -->
         <module>extension</module>
+        <module>extension-jaxrs</module>
         <module>extension-solon</module>
         <module>extension-spring5</module>
         <!--
@@ -168,7 +169,7 @@
             <dependency>
                 <groupId>com.aliyun.odps</groupId>
                 <artifactId>odps-sdk-core</artifactId>
-                <version>0.49.0-public</version>
+                <version>0.50.1-public</version>
             </dependency>
             <dependency>
                 <groupId>com.aliyun.odps</groupId>
@@ -257,7 +258,7 @@
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
-                <version>2.16.1</version>
+                <version>2.17.0</version>
             </dependency>
             <dependency>
                 <groupId>commons-lang</groupId>
@@ -373,7 +374,7 @@
             <dependency>
                 <groupId>org.gitlab4j</groupId>
                 <artifactId>gitlab4j-api</artifactId>
-                <version>5.6.0</version>
+                <version>5.8.0</version>
             </dependency>
 
             <dependency>
@@ -662,7 +663,8 @@
                                 com/alibaba/fastjson2/issues_1000/Issue1395.java,
                                 com/alibaba/fastjson2/issues_2100/Issue2164.java,
                                 com/alibaba/fastjson2/issues_2100/Issue2181.java,
-                                com/alibaba/fastjson/v2issues/Issue1432.java
+                                com/alibaba/fastjson/v2issues/Issue1432.java,
+                                com/alibaba/fastjson2/issues_3200/Issue3220.java
                             </excludes>
                         </configuration>
                     </execution>
@@ -763,7 +765,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.5.0</version>
+                    <version>3.5.2</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-assembly-plugin</artifactId>
@@ -771,7 +773,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.20.0</version>
+                    <version>3.21.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-gpg-plugin</artifactId>

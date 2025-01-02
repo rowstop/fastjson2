@@ -138,7 +138,7 @@
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
-            <version>3.36.0</version>
+            <version>3.37.0</version>
             <scope>provided</scope>
         </dependency>
 
@@ -152,7 +152,7 @@
         <dependency>
             <groupId>com.clickhouse</groupId>
             <artifactId>clickhouse-jdbc</artifactId>
-            <version>0.6.5</version>
+            <version>0.7.1-patch1</version>
             <classifier>http</classifier>
             <scope>test</scope>
         </dependency>

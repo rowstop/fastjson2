@@ -101,7 +101,7 @@
         <dependency>
             <groupId>io.github.wycst</groupId>
             <artifactId>wast</artifactId>
-            <version>0.0.16</version>
+            <version>0.0.17</version>
         </dependency>
         <dependency>
             <groupId>javax.annotation</groupId>
@@ -124,7 +124,7 @@
         <dependency>
             <groupId>org.apache.fury</groupId>
             <artifactId>fury-core</artifactId>
-            <version>0.7.0</version>
+            <version>0.9.0</version>
         </dependency>
         <dependency>
             <groupId>org.msgpack</groupId>
@@ -143,7 +143,7 @@
         <dependency>
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm</artifactId>
-            <version>9.7</version>
+            <version>9.7.1</version>
         </dependency>
         <dependency>
             <groupId>org.openjdk.jmh</groupId>

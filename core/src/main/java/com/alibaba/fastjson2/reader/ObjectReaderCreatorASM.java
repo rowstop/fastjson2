@@ -265,7 +265,7 @@ public class ObjectReaderCreatorASM
                 }
 
                 Class fieldClass = fieldReader.fieldClass;
-                if (!Modifier.isPublic(fieldClass.getModifiers())) {
+                if (fieldClass != null && !Modifier.isPublic(fieldClass.getModifiers())) {
                     match = false;
                     break;
                 }
@@ -3032,7 +3032,9 @@ public class ObjectReaderCreatorASM
 
             if (list) {
                 Class itemClass = TypeUtils.getMapping(itemType);
-                if (itemClass != null && Collection.class.isAssignableFrom(itemClass)) {
+                if (itemClass != null
+                        && (Collection.class.isAssignableFrom(itemClass) || !Modifier.isPublic(itemClass.getModifiers()))
+                ) {
                     list = false;
                 }
             }
