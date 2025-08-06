@@ -1,6 +1,5 @@
 package com.alibaba.fastjson2.issues_3600;
 
-
 import com.alibaba.fastjson2.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,9 +12,7 @@ import java.util.*;
  * @since 2025/8/4
  */
 public class Issue3692 {
-
-    private final  HashSet<String> list;
-
+    private final HashSet<String> list;
     {
         list = new HashSet<>();
         list.add("test1");
@@ -27,7 +24,7 @@ public class Issue3692 {
     public void objectArray() {
         Object[] data = new Object[]{list};
         String jsonString = encode(data);
-        Object[] list1 = decode(jsonString, Object[].class);
+        Object[] list1 = decode(jsonString, Object.class);
         Assertions.assertArrayEquals(data, list1);
     }
 
@@ -36,27 +33,29 @@ public class Issue3692 {
         List data = new ArrayList<>();
         data.add(list);
         String jsonString = encode(data);
-        List list1 = decode(jsonString, List.class);
+        List list1 = decode(jsonString, Object.class);
         Assertions.assertEquals(data, list1);
         System.out.println(1);
     }
 
     @Test
-    public void map(){
+    public void map() {
         HashMap<String, Object> data = new HashMap<>();
         data.put("list", list);
         String jsonString = encode(data);
-        Map map = decode(jsonString, Map.class);
-        Assertions.assertEquals(data,map);
+        Map map = decode(jsonString, Object.class);
+        Assertions.assertEquals(data, map);
     }
 
     static <T> T decode(String s, Type type) {
-        s =s == null|| s.isEmpty() ? null : s;
-        return JSON.parseObject(s, type
-                , JSONReader.Feature.FieldBased
-                , JSONReader.Feature.IgnoreAutoTypeNotMatch
-                , JSONReader.Feature.UseNativeObject
-                , JSONReader.Feature.SupportAutoType
+        s = s == null || s.isEmpty() ? null : s;
+        return JSON.parseObject(s,
+                type,
+                JSONReader.autoTypeFilter(true, (Class<?>) null),
+//                JSONReader.Feature.SupportAutoType,
+                JSONReader.Feature.FieldBased,
+                JSONReader.Feature.IgnoreAutoTypeNotMatch,
+                JSONReader.Feature.UseNativeObject
         );
     }
 
@@ -66,11 +65,11 @@ public class Issue3692 {
             return (String) object;
         }
         return JSON.toJSONString(
-                object
-                , JSONWriter.Feature.WriteClassName
-                , JSONWriter.Feature.IgnoreErrorGetter
-                , JSONWriter.Feature.FieldBased
-                , JSONWriter.Feature.ReferenceDetection
+                object,
+                JSONWriter.Feature.WriteClassName,
+                JSONWriter.Feature.IgnoreErrorGetter,
+                JSONWriter.Feature.FieldBased,
+                JSONWriter.Feature.ReferenceDetection
         );
     }
 }

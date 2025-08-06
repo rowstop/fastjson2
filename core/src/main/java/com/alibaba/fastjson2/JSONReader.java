@@ -2771,6 +2771,13 @@ public abstract class JSONReader
                     skipComment();
                     --i;
                     continue;
+                case 'S':
+                    if (this.nextIfSet()) {
+                        val = this.read(HashSet.class);
+                        break;
+                    } else {
+                        throw new JSONException(info());
+                    }
                 default:
                     throw new JSONException(info());
             }

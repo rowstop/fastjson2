@@ -1,12 +1,14 @@
 package com.alibaba.fastjson2.reader;
 
 import com.alibaba.fastjson2.JSONException;
+import com.alibaba.fastjson2.JSONPath;
 import com.alibaba.fastjson2.JSONReader;
 import com.alibaba.fastjson2.util.Fnv;
 
 import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 
 import static com.alibaba.fastjson2.JSONB.Constants.*;
 
@@ -80,11 +82,24 @@ public final class ObjectArrayReader
                         value = jsonReader.readBoolValue();
                         break;
                     case '{':
-                        value = jsonReader.read(Object.class);
+                        if (jsonReader.isSupportAutoTypeOrHandler(features)) {
+                            value = ObjectReaderImplObject.INSTANCE.readObject(jsonReader, null, null, 0);
+                        } else if (jsonReader.isReference()) {
+                            value = JSONPath.of(jsonReader.readReference());
+                        } else {
+                            value = jsonReader.readObject();
+                        }
                         break;
                     case '[':
                         value = jsonReader.readArray();
                         break;
+                    case 'S':
+                        if (jsonReader.nextIfSet()) {
+                            value = jsonReader.read(HashSet.class);
+                            break;
+                        } else {
+                            throw new JSONException(jsonReader.info());
+                        }
                     default:
                         throw new JSONException(jsonReader.info());
                 }
